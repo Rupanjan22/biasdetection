@@ -110,11 +110,6 @@ rr_function <- function(csv_file, excluded_time_groups) {
   return(rr_data)
 }
 
-# csv_file <- "C:/Users/HP/Desktop/Study Project/data analysis/Package Environment/Survey Responses Modified.csv"
-# excluded_time_groups <<- list(1) # excluding time_group1, as it included only introduction and description of the survey which people might overlook
-# rr_data <- rr_function(csv_file, excluded_time_groups)
-
-#############################################################################################################################################
 #' @title Create Plots Random Responding
 #'
 #' @description This function creates plots from the resulting data in random responding
@@ -176,6 +171,11 @@ create_plots_rr <- function(rr_data, excluded_time_groups) {
   text(x = xx, y = counts, label = counts, pos = 3, cex = 0.8, col = "red")
   dev.off()
 }
+
+# csv_file <- "C:/Users/HP/Desktop/Study Project/data analysis/Package Environment/Survey Responses Modified.csv"
+# excluded_time_groups <<- list(1) # excluding time_group1, as it included only introduction and description of the survey which people might overlook
+# rr_data <- rr_function(csv_file, excluded_time_groups)
+# create_plots_rr <- function(rr_data, excluded_time_groups)
 
 #############################################################################################################################################
 #' @title Extreme Responding Style
@@ -240,11 +240,6 @@ ers_function <- function(csv_file, likert_columns, max_value, min_value) {
 
   return(ers_data)
 }
-
-# likert_columns <- list("ParkingCosts.SQ001.", "CongestionCosts.SQ001.", "LowIncLikert.SQ001.", "AffordableTrLikert.SQ001.")
-# num_likert_columns <- length(likert_columns)
-# max_value <- 5
-# min_value <- 1
 
 #' @title Create Plots Extreme Response Style
 #'
@@ -362,6 +357,12 @@ create_plots_ers <- function(ers_data) {
   write.csv(ers_data,"Extreme Response styles including both + & -.csv")
 }
 
+# likert_columns <- list("ParkingCosts.SQ001.", "CongestionCosts.SQ001.", "LowIncLikert.SQ001.", "AffordableTrLikert.SQ001.")
+# max_value <- 5
+# min_value <- 1
+# ers_data <- ers_function(csv_file, likert_columns, max_value, min_value)
+# create_plots_ers(ers_data)
+
 #############################################################################################################################################
 #' @title Mid point Response Styles
 #'
@@ -371,8 +372,6 @@ create_plots_ers <- function(ers_data) {
 #' @param mid_value Mid rate in the likert scale
 #' @return A list containing the updated data
 #' mrs_function()
-
-mid_value <- 3
 
 # Mid point Response Styles
 mrs_function <- function(csv_file, likert_columns, mid_value) {
@@ -405,7 +404,6 @@ mrs_function <- function(csv_file, likert_columns, mid_value) {
   return(mrs_data)
 
 }
-
 
 #' @title Create Plots Mid point Response Style
 #'
@@ -456,6 +454,11 @@ create_plots_mrs <- function(mrs_data) {
 
   write.csv(mrs_data,"Midpoint Response Styles.csv")
 }
+
+# likert_columns <- list("ParkingCosts.SQ001.", "CongestionCosts.SQ001.", "LowIncLikert.SQ001.", "AffordableTrLikert.SQ001.")
+# mid_value <- 3
+# mrs_data <- mrs_function(csv_file, likert_columns, mid_value)
+# create_plots_mrs(mrs_data)
 
 #############################################################################################################################################
 #' @title Lexicographic Response Style Function
