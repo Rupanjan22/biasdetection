@@ -5,6 +5,7 @@
 #' @param csv_file The file we want to process
 #' @return A list containing the data from the .csv file
 #' read_csv()
+#' @export
 
 read_csv <- function(csv_file) {
   working_dataset <<- read.csv(csv_file)
@@ -23,6 +24,7 @@ read_csv <- function(csv_file) {
 #' @param csv_data A list containing the responses
 #' @return A list containing unique responses (based on id) from the original panel data
 #' remove_duplicates()
+#' @export
 
 remove_duplicates <- function(csv_data) {
   rr_data <- csv_data %>% distinct(id, .keep_all = TRUE)
@@ -36,6 +38,7 @@ remove_duplicates <- function(csv_data) {
 #' @param rr_data A list containing unique responses (based on id) from the original panel data
 #'
 #' rr_time_filter()
+#' @export
 
 rr_time_filter <- function(rr_data) {
   for(i in 1:num_time_groups) {
@@ -56,6 +59,7 @@ rr_time_filter <- function(rr_data) {
 #' @param excluded_time_groups A list containing the indices of excluded time groups
 #' @return A list containing the updated data
 #' random_responding_time_filter()
+#' @export
 
 random_responding_time_filter <- function(rr_data, excluded_time_groups) {
   rr_data$RR_Total <- NA # Creates new column with the sum of the random responses for each Time Group
@@ -100,6 +104,7 @@ random_responding_time_filter <- function(rr_data, excluded_time_groups) {
 #' @param excluded_time_groups A list containing the indices of excluded time groups
 #' @return A list containing the updated data
 #' rr_function()
+#' @export
 
 rr_function <- function(csv_file, excluded_time_groups) {
   excluded_time_groups <<- excluded_time_groups
@@ -117,6 +122,7 @@ rr_function <- function(csv_file, excluded_time_groups) {
 #' @param rr_data A list containing unique responses (based on id) from the original panel data
 #' @param excluded_time_groups A list containing the indices of excluded time groups
 #' create_plots_rr()
+#' @export
 
 create_plots_rr <- function(rr_data, excluded_time_groups) {
   rr_group_wise_percentage <<- c()
@@ -187,6 +193,7 @@ create_plots_rr <- function(rr_data, excluded_time_groups) {
 #' @param min_value Minimum rate in the likert scale
 #' @return A list containing the updated data
 #' ers_function()
+#' @export
 
 # Extreme Response Styles
 ers_function <- function(csv_file, likert_columns, max_value, min_value) {
@@ -248,6 +255,7 @@ ers_function <- function(csv_file, likert_columns, max_value, min_value) {
 #' kernel density plot for respondent wise).
 #' @param ers_data Resulting data from the ers_function
 #' create_plots_ers()
+#' @export
 
 create_plots_ers <- function(ers_data) {
   ers_group_wise_percentage <<- c()
@@ -372,6 +380,7 @@ create_plots_ers <- function(ers_data) {
 #' @param mid_value Mid rate in the likert scale
 #' @return A list containing the updated data
 #' mrs_function()
+#' @export
 
 # Mid point Response Styles
 mrs_function <- function(csv_file, likert_columns, mid_value) {
@@ -411,6 +420,7 @@ mrs_function <- function(csv_file, likert_columns, mid_value) {
 #' (question and respondent wise bar plots).
 #' @param mrs_data Resulting data from the mrs_function
 #' create_plot_mrs()
+#' @export
 
 create_plots_mrs <- function(mrs_data) {
   mrs_group_wise_percentage <<- c()
@@ -472,6 +482,7 @@ create_plots_mrs <- function(mrs_data) {
 #' @param attribute_short The short form of the attribute name (for table names)
 #' @return A list containing the updated data
 #' lrs_general_function()
+#' @export
 
 lrs_general_function <- function(csv_file, total_scenarios, scenarios, alternatives, attribute, attribute_short){
   working_dataset <- read_csv(csv_file)
@@ -595,6 +606,7 @@ lrs_general_function <- function(csv_file, total_scenarios, scenarios, alternati
 #' @param attribute_short The short form of the attribute name (for table names)
 #' @return A list containing the updated data
 #' attribute_non_attendance_function()
+#' @export
 
 attribute_non_attendance_function <- function(csv_file, total_scenarios, scenarios, alternatives, attribute, attribute_short){
   working_dataset <- read_csv(csv_file)
