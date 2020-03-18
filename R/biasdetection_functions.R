@@ -209,7 +209,7 @@ ers_function <- function(csv_file, likert_columns, max_value, min_value) {
   ers_data$ERS_N_Total <- NA
   ers_data$percent_N_ERS_Total <- NA
 
-  num_likert_columns <- length(likert_columns)
+  num_likert_columns <<- length(likert_columns)
 
   for(i in 1:num_likert_columns) {
     likert_column <- unlist(likert_columns)[i]
