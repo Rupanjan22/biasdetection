@@ -8,6 +8,14 @@
 \description{
 Identifies the different types of biases in a stated preference dataset.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Rupanjan22/biasdetection}
+  \item Report bugs at \url{https://github.com/Rupanjan22/biasdetection/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Rupanjan Chakraborty \email{rupanjan.chakraborty@tum.de}
 
