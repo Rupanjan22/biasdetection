@@ -136,7 +136,7 @@ create_plots_rr <- function(rr_data, excluded_time_groups) {
       total_rr_column <- paste("Total_RR_Gr",toString(i), sep="")
       assign(total_rr_column, sum(rr_data[[rr_column]])) # Total_RR_Gr[i] <- sum(RR_Data$RR_Gr[i])
 
-      percent_rr_column <- paste("percent_RR_Gr",toString(i), sep="")
+      percent_rr_column <- paste("Percent_RR_Gr",toString(i), sep="")
       assign(percent_rr_column, get(total_rr_column)/length(rr_data[[rr_column]])* 100) # percent_RR_Gr[i] <- Total_RR_Gr[i] / len(RR_Data$RR_Gr[i])
 
       rr_group_wise_percentage[j] <- get(percent_rr_column)
@@ -164,16 +164,16 @@ create_plots_rr <- function(rr_data, excluded_time_groups) {
   plot_name <- "Histogram of percentage of random responding"
   png(filename=paste(plot_name, ".png", sep=""), width=900, bg="white")
   hist(rr_data$percent_RR_Total, breaks=12, col='red', main = plot_name,
-       xlab="percentage of random responding", ylab = "frequency")
+       xlab="Percentage of random responding", ylab = "frequency")
   dev.off()
 
   ##Bar plots
-  plot_name <- "percentage of Random responding distribution"
+  plot_name <- "Percentage of Random responding distribution"
   png(filename=paste(plot_name, ".png", sep=""), width=900, bg="white")
   counts <- table(rr_data$percent_RR_Total)
   ylim <- c(0, 1.2*max(counts))
   xx <-barplot(counts, ylim = ylim, main=plot_name,
-               xlab="percentage of random responding", ylab = "No of respondents")
+               xlab="Percentage of random responding", ylab = "No of respondents")
   text(x = xx, y = counts, label = counts, pos = 3, cex = 0.8, col = "red")
   dev.off()
 }
@@ -279,11 +279,11 @@ create_plots_ers <- function(ers_data) {
     assign(total_ers_column_negative, sum(ers_data[[ers_negative_column]])) # Total_ERS_N_PC <- sum(ERS_Data$ERS_N_PC)
 
 
-    percent_ers_column <- paste("percent_ERS_",likert_column, sep="")
+    percent_ers_column <- paste("Percent_ERS_",likert_column, sep="")
     assign(percent_ers_column, get(total_ers_column)/length(ers_data[[ers_column]])* 100) # percent_ERS_PC <- Total_ERS_PC / len(ERS_Data$ERS_PC)
-    percent_ers_column_positive <- paste("percent_ERS_P_",likert_column, sep="")
+    percent_ers_column_positive <- paste("Percent_ERS_P_",likert_column, sep="")
     assign(percent_ers_column_positive, get(total_ers_column_positive)/length(ers_data[[ers_positive_column]])* 100) # percent_ERS_P_PC <- Total_ERS_P_PC / len(ERS_Data$ERS_P_PC)
-    percent_ers_column_negative <- paste("percent_ERS_N_",likert_column, sep="")
+    percent_ers_column_negative <- paste("Percent_ERS_N_",likert_column, sep="")
     assign(percent_ers_column_negative, get(total_ers_column_negative)/length(ers_data[[ers_negative_column]])* 100) # percent_ERS_N_PC <- Total_ERS_N_PC / len(ERS_Data$ERS_N_PC)
 
 
@@ -326,32 +326,32 @@ create_plots_ers <- function(ers_data) {
 
   #Respondent wise bar plots
   #Total ERS
-  plot_name <- "percentage of Total Extreme Response Style distribution"
+  plot_name <- "Percentage of Total Extreme Response Style distribution"
   png(filename=paste(plot_name, ".png", sep=""), width=900, bg="white")
   counts <- table(ers_data$percent_ERS_Total)
   ylim <- c(0, 1.2*max(counts))
   qq <-barplot(counts, ylim = ylim, main=plot_name,
-               xlab="percentage of Total ERS", ylab = "No of respondents")
+               xlab="Percentage of Total ERS", ylab = "No of respondents")
   text(x = qq, y = counts, label = counts, pos = 3, cex = 0.8, col = "red")
   dev.off()
 
   #Positive ERS
-  plot_name <- "percentage of positive ERS distribution"
+  plot_name <- "Percentage of positive ERS distribution"
   png(filename=paste(plot_name, ".png", sep=""), width=900, bg="white")
   counts <- table(ers_data$percent_P_ERS_Total)
   ylim <- c(0, 1.2*max(counts))
   xx <-barplot(counts, ylim = ylim, main=plot_name,
-               xlab="percentage of positive ERS", ylab = "No of respondents")
+               xlab="Percentage of positive ERS", ylab = "No of respondents")
   text(x = xx, y = counts, label = counts, pos = 3, cex = 0.8, col = "red")
   dev.off()
 
   #Negative ERS
-  plot_name <- "percentage of negative ERS distribution"
+  plot_name <- "Percentage of negative ERS distribution"
   png(filename=paste(plot_name, ".png", sep=""), width=900, bg="white")
   counts <- table(ers_data$percent_N_ERS_Total)
   ylim <- c(0, 1.2*max(counts))
   xx <-barplot(counts, ylim = ylim, main=plot_name,
-               xlab="percentage of negative ERS", ylab = "No of respondents")
+               xlab="Percentage of negative ERS", ylab = "No of respondents")
   text(x = xx, y = counts, label = counts, pos = 3, cex = 0.8, col = "red")
   dev.off()
 
@@ -436,7 +436,7 @@ create_plots_mrs <- function(mrs_data) {
     assign(total_mrs_column, sum(mrs_data[[mrs_column]])) # Total_MRS_PC <- sum(MRS_Data$MRS_PC)
 
 
-    percent_mrs_column <- paste("percent_MRS_",likert_column, sep="")
+    percent_mrs_column <- paste("Percent_MRS_",likert_column, sep="")
     assign(percent_mrs_column, get(total_mrs_column)/length(mrs_data[[mrs_column]])* 100) # percent_MRS_PC <- Total_MRS_PC / len(MRS_Data$MRS_PC)
 
     mrs_group_wise_percentage[i] <- get(percent_mrs_column)
@@ -460,7 +460,7 @@ create_plots_mrs <- function(mrs_data) {
   counts <- table(mrs_data$percent_MRS_Total)
   ylim <- c(0, 1.2*max(counts))
   xx <-barplot(counts, ylim = ylim, main=plot_name,
-               xlab="percentage of MRS", ylab = "No of respondents")
+               xlab="Percentage of MRS", ylab = "No of respondents")
   text(x = xx, y = counts, label = counts, pos = 3, cex = 0.8, col = "red")
   dev.off()
 
