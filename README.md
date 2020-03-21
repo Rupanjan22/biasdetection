@@ -32,6 +32,8 @@ And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
+install.packages("devtools")
+library(devtools)
 devtools::install_github("Rupanjan22/biasdetection")
 ```
 ## Example
