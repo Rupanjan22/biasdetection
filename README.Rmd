@@ -28,7 +28,7 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("Rupanjan22/biasdetection")
 ```
 ## Test Example
-
+``` r
 library(dplyr)
 library(stringr)
 library(rlist)
@@ -96,3 +96,9 @@ alternatives_nt <- list(list("Alt1", "Alt1","Alt1", "Alt1","Alt1", "Alt1","Alt1"
 
 attribute_non_attendance_function(csv_file, total_scenarios, scenarios_ib, alternatives_ib, attribute_ib, attribute_short_ib)
 attribute_non_attendance_function(csv_file, total_scenarios, scenarios_nt, alternatives_nt, attribute_nt, attribute_short_nt)
+
+
+
+
+```
+
