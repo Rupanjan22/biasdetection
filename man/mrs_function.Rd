@@ -9,7 +9,7 @@ mrs_function(csv_file, likert_columns, mid_value)
 \arguments{
 \item{csv_file}{The file we want to process}
 
-\item{likert_columns}{A list containing the column names to use for ERS}
+\item{likert_columns}{A list containing the column names to use for MRS}
 
 \item{mid_value}{Mid rate in the likert scale}
 }

@@ -4,12 +4,14 @@
 \alias{rr_function}
 \title{Write the updated .csv file}
 \usage{
-rr_function(csv_file, excluded_time_groups)
+rr_function(csv_file, excluded_time_groups, num_time_groups)
 }
 \arguments{
 \item{csv_file}{The file we want to process}
 
 \item{excluded_time_groups}{A list containing the indices of excluded time groups}
+
+\item{num_time_groups}{Number of time groups}
 }
 \value{
 A list containing the updated data

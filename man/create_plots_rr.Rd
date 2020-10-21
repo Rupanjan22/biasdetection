@@ -4,12 +4,14 @@
 \alias{create_plots_rr}
 \title{Create Plots Random Responding}
 \usage{
-create_plots_rr(rr_data, excluded_time_groups)
+create_plots_rr(rr_data, excluded_time_groups, num_time_groups)
 }
 \arguments{
 \item{rr_data}{A list containing unique responses (based on id) from the original panel data}
 
-\item{excluded_time_groups}{A list containing the indices of excluded time groups
+\item{excluded_time_groups}{A list containing the indices of excluded time groups}
+
+\item{num_time_groups}{Number of time groups
 create_plots_rr()}
 }
 \description{

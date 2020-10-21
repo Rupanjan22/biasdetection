@@ -4,12 +4,14 @@
 \alias{random_responding_time_filter}
 \title{Random responding time filter}
 \usage{
-random_responding_time_filter(rr_data, excluded_time_groups)
+random_responding_time_filter(rr_data, excluded_time_groups, num_time_groups)
 }
 \arguments{
 \item{rr_data}{A list containing unique responses (based on id) from the original panel data}
 
 \item{excluded_time_groups}{A list containing the indices of excluded time groups}
+
+\item{num_time_groups}{Number of time groups}
 }
 \value{
 A list containing the updated data

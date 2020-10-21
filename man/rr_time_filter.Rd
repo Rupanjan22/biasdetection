@@ -4,11 +4,12 @@
 \alias{rr_time_filter}
 \title{Random response time filter}
 \usage{
-rr_time_filter(rr_data)
+rr_time_filter(rr_data, num_time_groups)
 }
 \arguments{
-\item{rr_data}{A list containing unique responses (based on id) from the original panel data
+\item{rr_data}{A list containing unique responses (based on id) from the original panel data}
 
+\item{num_time_groups}{Number of time groups
 rr_time_filter()}
 }
 \description{

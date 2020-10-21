@@ -4,10 +4,12 @@
 \alias{create_plots_mrs}
 \title{Create Plots Mid point Response Style}
 \usage{
-create_plots_mrs(mrs_data)
+create_plots_mrs(mrs_data, likert_columns)
 }
 \arguments{
-\item{mrs_data}{Resulting data from the mrs_function
+\item{mrs_data}{Resulting data from the mrs_function}
+
+\item{likert_columns}{A list containing the column names to use for MRS
 create_plot_mrs()}
 }
 \description{

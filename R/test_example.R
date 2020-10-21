@@ -1,24 +1,25 @@
 library(dplyr)
 library(stringr)
 library(rlist)
-library(biasdetection)
+#library(biasdetection)
 
 csv_file <- "C:/Users/HP/Desktop/Study Project/data analysis/Package Environment/Survey Responses Modified.csv"
-excluded_time_groups <<- list(1) # excluding time_group1, as it included only introduction and description of the survey which people might overlook
-rr_data <- rr_function(csv_file, excluded_time_groups)
+excluded_time_groups <- list(1) # excluding time_group1, as it included only introduction and description of the survey which people might overlook
+num_time_groups <- get_time_groups(csv_file)
 
-create_plots_rr(rr_data, excluded_time_groups)
+rr_data <- rr_function(csv_file, excluded_time_groups, num_time_groups)
+create_plots_rr(rr_data, excluded_time_groups, num_time_groups)
 
 likert_columns <- list("ParkingCosts.SQ001.", "CongestionCosts.SQ001.", "LowIncLikert.SQ001.", "AffordableTrLikert.SQ001.")
 max_value <- 5
 min_value <- 1
 ers_data <- ers_function(csv_file, likert_columns, max_value, min_value)
-create_plots_ers(ers_data)
+create_plots_ers(ers_data, likert_columns)
 
 likert_columns <- list("ParkingCosts.SQ001.", "CongestionCosts.SQ001.", "LowIncLikert.SQ001.", "AffordableTrLikert.SQ001.")
 mid_value <- 3
 mrs_data <- mrs_function(csv_file, likert_columns, mid_value)
-create_plots_mrs(mrs_data)
+create_plots_mrs(mrs_data, likert_columns)
 
 
 total_scenarios <- list("S17","S18","S19","S20","S21","S22","S23","S24")

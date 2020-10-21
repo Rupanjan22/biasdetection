@@ -1,20 +1,20 @@
-#' @title Read .csv file
+#' @title Get number of time groups
 #'
-#' @description This function reads the .csv file which is originated from Lime Survey.
-#' It also calculates the number of time groups automatically for detecting random responses based on the time spent in filling out parts of the survey.
-#' @param csv_file The file we want to process
-#' @return A list containing the data from the .csv file
-#' read_csv()
+#' @description This function reads the .csv file which is originated from Lime Survey
+#' and calculates the number of time groups automatically for detecting random responses based on the time spent in filling out parts of the survey.
+#' @param csv_file The .csv file we want to process
+#' @return Number of time groups
+#' get_time_groups()
 #' @export
 
-read_csv <- function(csv_file) {
-  working_dataset <<- read.csv(csv_file)
+get_time_groups <- function(csv_file) {
+  working_dataset <- read.csv(csv_file)
 
   # Get number of time groups
   names <- colnames(working_dataset)
-  num_time_groups <<- sum(str_count(names, pattern = "Time_Group"), na.rm = FALSE)
+  num_time_groups <- sum(str_count(names, pattern = "Time_Group"), na.rm = FALSE)
 
-  return(working_dataset)
+  return(num_time_groups)
 }
 
 
@@ -36,11 +36,11 @@ remove_duplicates <- function(csv_data) {
 #'
 #' @description Calculates the first quartiles of each Time Group to identify the random responses. It displays them as well.
 #' @param rr_data A list containing unique responses (based on id) from the original panel data
-#'
+#' @param num_time_groups Number of time groups
 #' rr_time_filter()
 #' @export
 
-rr_time_filter <- function(rr_data) {
+rr_time_filter <- function(rr_data, num_time_groups) {
   for(i in 1:num_time_groups) {
     time_group <- paste("Time_Group",toString(i), sep="")
     print(summary(rr_data[[time_group]]))
@@ -57,11 +57,12 @@ rr_time_filter <- function(rr_data) {
 #' Time Group, and the total percentage of random responses for each respondent, respectively.
 #' @param rr_data A list containing unique responses (based on id) from the original panel data
 #' @param excluded_time_groups A list containing the indices of excluded time groups
+#' @param num_time_groups Number of time groups
 #' @return A list containing the updated data
 #' random_responding_time_filter()
 #' @export
 
-random_responding_time_filter <- function(rr_data, excluded_time_groups) {
+random_responding_time_filter <- function(rr_data, excluded_time_groups, num_time_groups) {
   rr_data$RR_Total <- NA # Creates new column with the sum of the random responses for each Time Group
   rr_data$percent_RR_Total <- NA # Created a new column with the total percentage of random responses for each respondent
 
@@ -102,16 +103,16 @@ random_responding_time_filter <- function(rr_data, excluded_time_groups) {
 #' and writes the result in another .csv file.
 #' @param csv_file The file we want to process
 #' @param excluded_time_groups A list containing the indices of excluded time groups
+#' @param num_time_groups Number of time groups
 #' @return A list containing the updated data
 #' rr_function()
 #' @export
 
-rr_function <- function(csv_file, excluded_time_groups) {
-  excluded_time_groups <<- excluded_time_groups
-  data <- read_csv(csv_file)
+rr_function <- function(csv_file, excluded_time_groups, num_time_groups) {
+  data <- read.csv(csv_file)
   rr_data <- remove_duplicates(data)
-  rr_time_filter(rr_data)
-  rr_data <- random_responding_time_filter(rr_data, excluded_time_groups)
+  rr_time_filter(rr_data, num_time_groups)
+  rr_data <- random_responding_time_filter(rr_data, excluded_time_groups, num_time_groups)
   return(rr_data)
 }
 
@@ -121,12 +122,13 @@ rr_function <- function(csv_file, excluded_time_groups) {
 #' (bar plot for group wise and bar plot, density plot and histogram for respondent wise)
 #' @param rr_data A list containing unique responses (based on id) from the original panel data
 #' @param excluded_time_groups A list containing the indices of excluded time groups
+#' @param num_time_groups Number of time groups
 #' create_plots_rr()
 #' @export
 
-create_plots_rr <- function(rr_data, excluded_time_groups) {
-  rr_group_wise_percentage <<- c()
-  rr_groups_used_names <<- c()
+create_plots_rr <- function(rr_data, excluded_time_groups, num_time_groups) {
+  rr_group_wise_percentage <- c()
+  rr_groups_used_names <- c()
 
   j <- 1 # to keep track of number of time groups used
   for(i in 1:num_time_groups) {
@@ -193,7 +195,7 @@ create_plots_rr <- function(rr_data, excluded_time_groups) {
 
 # Extreme Response Styles
 ers_function <- function(csv_file, likert_columns, max_value, min_value) {
-  working_dataset <- read_csv(csv_file)
+  working_dataset <- read.csv(csv_file)
 
   #Removing duplicates based on 'id'
   ers_data <- working_dataset %>% distinct(id, .keep_all = TRUE)
@@ -205,7 +207,7 @@ ers_function <- function(csv_file, likert_columns, max_value, min_value) {
   ers_data$ERS_N_Total <- NA
   ers_data$percent_N_ERS_Total <- NA
 
-  num_likert_columns <<- length(likert_columns)
+  num_likert_columns <- length(likert_columns)
 
   for(i in 1:num_likert_columns) {
     likert_column <- unlist(likert_columns)[i]
@@ -252,14 +254,17 @@ ers_function <- function(csv_file, likert_columns, max_value, min_value) {
 #' (question wise bar plot and respondent wise bar plot (for positive, negative and total),
 #' kernel density plot for respondent wise).
 #' @param ers_data Resulting data from the ers_function
+#' @param likert_columns A list containing the column names to use for ERS
 #' create_plots_ers()
 #' @export
 
-create_plots_ers <- function(ers_data) {
-  ers_group_wise_percentage <<- c()
-  ers_positive_group_wise_percentage <<- c()
-  ers_negative_group_wise_percentage <<- c()
-  ers_groups_used_names <<- c()
+create_plots_ers <- function(ers_data, likert_columns) {
+  ers_group_wise_percentage <- c()
+  ers_positive_group_wise_percentage <- c()
+  ers_negative_group_wise_percentage <- c()
+  ers_groups_used_names <- c()
+
+  num_likert_columns <- length(likert_columns)
 
   for(i in 1:num_likert_columns) {
     likert_column <- unlist(likert_columns)[i]
@@ -368,7 +373,7 @@ create_plots_ers <- function(ers_data) {
 #'
 #' @description
 #' @param csv_file The file we want to process
-#' @param likert_columns A list containing the column names to use for ERS
+#' @param likert_columns A list containing the column names to use for MRS
 #' @param mid_value Mid rate in the likert scale
 #' @return A list containing the updated data
 #' mrs_function()
@@ -376,7 +381,7 @@ create_plots_ers <- function(ers_data) {
 
 # Mid point Response Styles
 mrs_function <- function(csv_file, likert_columns, mid_value) {
-  working_dataset <- read_csv(csv_file)
+  working_dataset <- read.csv(csv_file)
 
   #Removing duplicates based on 'id'
   mrs_data <- working_dataset %>% distinct(id, .keep_all = TRUE)
@@ -384,6 +389,8 @@ mrs_function <- function(csv_file, likert_columns, mid_value) {
   #Adding blank columns to get the outputs of MRS
   mrs_data$MRS_Total <-NA
   mrs_data$percent_MRS_Total <-NA
+
+  num_likert_columns <- length(likert_columns)
 
   for(i in 1:num_likert_columns) {
     likert_column <- unlist(likert_columns)[i]
@@ -411,12 +418,15 @@ mrs_function <- function(csv_file, likert_columns, mid_value) {
 #' @description This function creates plots from the resulting data in mid point response style
 #' (question and respondent wise bar plots).
 #' @param mrs_data Resulting data from the mrs_function
+#' @param likert_columns A list containing the column names to use for MRS
 #' create_plot_mrs()
 #' @export
 
-create_plots_mrs <- function(mrs_data) {
-  mrs_group_wise_percentage <<- c()
-  mrs_groups_used_names <<- c()
+create_plots_mrs <- function(mrs_data, likert_columns) {
+  mrs_group_wise_percentage <- c()
+  mrs_groups_used_names <- c()
+
+  num_likert_columns <- length(likert_columns)
 
   for(i in 1:num_likert_columns) {
     likert_column <- unlist(likert_columns)[i]
@@ -473,7 +483,7 @@ create_plots_mrs <- function(mrs_data) {
 #' @export
 
 lrs_general_function <- function(csv_file, total_scenarios, scenarios, alternatives, attribute, attribute_short){
-  working_dataset <- read_csv(csv_file)
+  working_dataset <- read.csv(csv_file)
 
   lrs_group_wise_percentage <- c()
   lrs_groups_used_names <- c()
@@ -569,7 +579,7 @@ lrs_general_function <- function(csv_file, total_scenarios, scenarios, alternati
 #' @export
 
 attribute_non_attendance_function <- function(csv_file, total_scenarios, scenarios, alternatives, attribute, attribute_short){
-  working_dataset <- read_csv(csv_file)
+  working_dataset <- read.csv(csv_file)
   ana_data <- remove_duplicates(working_dataset)
   num_total_scenarios <- length(total_scenarios)
 

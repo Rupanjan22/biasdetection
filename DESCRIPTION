@@ -14,7 +14,7 @@ Imports:
     dplyr,
     stringr,
     rlist
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 URL: https://github.com/Rupanjan22/biasdetection
 BugReports: https://github.com/Rupanjan22/biasdetection/issues
 Roxygen: list(markdown = TRUE)

@@ -4,10 +4,12 @@
 \alias{create_plots_ers}
 \title{Create Plots Extreme Response Style}
 \usage{
-create_plots_ers(ers_data)
+create_plots_ers(ers_data, likert_columns)
 }
 \arguments{
-\item{ers_data}{Resulting data from the ers_function
+\item{ers_data}{Resulting data from the ers_function}
+
+\item{likert_columns}{A list containing the column names to use for ERS
 create_plots_ers()}
 }
 \description{
