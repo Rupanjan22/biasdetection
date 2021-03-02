@@ -7,6 +7,7 @@
 attribute_non_attendance_function(
   csv_file,
   total_scenarios,
+  num_blocks,
   scenarios,
   alternatives,
   attribute,
@@ -18,17 +19,16 @@ attribute_non_attendance_function(
 
 \item{total_scenarios}{A list containing all the SP scenarios}
 
+\item{num_blocks}{The amount of blocks on which the scenarios will be distributed}
+
 \item{scenarios}{A list containing the relevant SP scenarios for the specific attribute of LRS}
 
 \item{alternatives}{A list containing the alternatives for the SP experiment}
 
 \item{attribute}{The attribute chosen for LRS}
 
-\item{attribute_short}{The short form of the attribute name (for table names)}
-}
-\value{
-A list containing the updated data
-attribute_non_attendance_function()
+\item{attribute_short}{The short form of the attribute name (for table names)
+attribute_non_attendance_function()}
 }
 \description{
 Attribute Non Attendance Function (for Inconsistent Bias and Non Trading)

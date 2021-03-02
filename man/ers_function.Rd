@@ -9,7 +9,7 @@ ers_function(csv_file, likert_columns, max_value, min_value)
 \arguments{
 \item{csv_file}{The file we want to process}
 
-\item{likert_columns}{A list containing the column names to use for ERS}
+\item{likert_columns}{A list containing the column names (likert questions) to use for Extreme Responding Style}
 
 \item{max_value}{Maximum rate in the likert scale}
 
@@ -20,5 +20,5 @@ A list containing the updated data
 ers_function()
 }
 \description{
-Extreme Responding Style
+Detects extreme responding style for the Likert questions in the survey.
 }

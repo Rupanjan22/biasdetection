@@ -9,12 +9,14 @@ create_plots_rr(rr_data, excluded_time_groups, num_time_groups)
 \arguments{
 \item{rr_data}{A list containing unique responses (based on id) from the original panel data}
 
-\item{excluded_time_groups}{A list containing the indices of excluded time groups}
+\item{excluded_time_groups}{A list containing the indices of excluded time groups. Excluded time groups could be the time groups which could be neglected for calculating
+the percentage of random responding}
 
 \item{num_time_groups}{Number of time groups
 create_plots_rr()}
 }
 \description{
-This function creates plots from the resulting data in random responding
-(bar plot for group wise and bar plot, density plot and histogram for respondent wise)
+This function creates different kinds of plots such as bar plot, density plot and histogram for the generated dataframe rr_data.
+The percentage of random responding is analysed both group wise (groups from the survey) and respondent wise. Plots for group wise analysis include bar plot
+while for respondent wise, includes both bar plot and histogram.
 }

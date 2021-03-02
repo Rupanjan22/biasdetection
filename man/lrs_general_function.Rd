@@ -7,6 +7,7 @@
 lrs_general_function(
   csv_file,
   total_scenarios,
+  num_blocks,
   scenarios,
   alternatives,
   attribute,
@@ -16,20 +17,20 @@ lrs_general_function(
 \arguments{
 \item{csv_file}{The file we want to process}
 
-\item{total_scenarios}{A list containing all the SP scenarios}
+\item{total_scenarios}{A list containing all the Stated Preference scenarios}
 
-\item{scenarios}{A list containing the relevant SP scenarios for the specific attribute of LRS}
+\item{num_blocks}{The amount of blocks on which the scenarios will be distributed}
 
-\item{alternatives}{A list containing the alternatives for the SP experiment}
+\item{scenarios}{A list containing the relevant Stated Preference scenarios for the specific attribute of Lexicographic Response Styles}
 
-\item{attribute}{The attribute chosen for LRS}
+\item{alternatives}{A list containing the alternatives for the Stated Preference experiment}
 
-\item{attribute_short}{The short form of the attribute name (for table names)}
-}
-\value{
-A list containing the updated data
-lrs_general_function()
+\item{attribute}{The attribute chosen for Lexicographic Response Styles}
+
+\item{attribute_short}{The short form of the attribute name (for table names)
+lrs_general_function()}
 }
 \description{
-Lexicographic Response Style Function
+This function detects the responses employing lexicographic response styles, where the respondents choose the option for stated preference
+scenarios based on the best attribute level.
 }

@@ -7,13 +7,17 @@
 get_time_groups(csv_file)
 }
 \arguments{
-\item{csv_file}{The .csv file we want to process}
+\item{csv_file}{The .csv file which contains the panel data of all responses and is generated from survey platforms like Limesurvey.}
 }
 \value{
-Number of time groups
+Number of time groups based on the different groups of the survey.
 get_time_groups()
 }
 \description{
 This function reads the .csv file which is originated from Lime Survey
-and calculates the number of time groups automatically for detecting random responses based on the time spent in filling out parts of the survey.
+and calculates the number of time groups automatically for detecting random responses.It detects the number of time groups which contains the time spent
+by each respondent in filling up different parts of the survey. The different parts of the survey are usually grouped into different groups like travel behaviour related
+questions, stated preference questions, socio-demographic questions, among others. Limesurvey automatically generates the time spent by each respondent in filling up different
+parts of the survey which are grouped into different groups. Respondents completing different parts of the survey in time less than first quartile values of the time spent
+in each group are the ones employing random responding or inattentive responding.
 }

@@ -13,7 +13,8 @@ LazyData: true
 Imports: 
     dplyr,
     stringr,
-    rlist
+    rlist,
+    Rdpack
 RoxygenNote: 7.1.1
 URL: https://github.com/Rupanjan22/biasdetection
 BugReports: https://github.com/Rupanjan22/biasdetection/issues

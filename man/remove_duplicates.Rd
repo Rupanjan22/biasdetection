@@ -2,17 +2,22 @@
 % Please edit documentation in R/biasdetection_functions.R
 \name{remove_duplicates}
 \alias{remove_duplicates}
-\title{Remove duplicate}
+\title{Remove duplicates}
 \usage{
 remove_duplicates(csv_data)
 }
 \arguments{
-\item{csv_data}{A list containing the responses}
+\item{csv_data}{A list containing panel data of all responses}
 }
 \value{
-A list containing unique responses (based on id) from the original panel data
+A list containing unique responses (based on id) from the original panel data. The original panel data contains different rows having the different choice scenarios for each respondent.
+
 remove_duplicates()
 }
 \description{
-Removes the duplicate entries from the panel data based on the id of the respondent to detect random responses.
+Removes the duplicate entries from the panel data based on the id of the respondent to detect random responses. Usually, the panel data contains different rows for the same
+respondent which contains the responses to different choice situations (stated preference scenarios). The stated preference scenarios which are generated from the experimental design
+such as Factorial design, Fractional factorial design are usually grouped into different blocks which are then presented to the respondents. So, each respondent gets to answer each block
+which contains the different stated preference scenarios. This function removes the duplicate entries (different rows for different stated preference scenarios) based on id
+for each respondent and returns the dataframe rr_data containing only one row for each respondent. This rr_data is used in detecting random responding.
 }

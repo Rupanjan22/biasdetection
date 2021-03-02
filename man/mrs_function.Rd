@@ -9,7 +9,7 @@ mrs_function(csv_file, likert_columns, mid_value)
 \arguments{
 \item{csv_file}{The file we want to process}
 
-\item{likert_columns}{A list containing the column names to use for MRS}
+\item{likert_columns}{A list containing the column names to use for Midpoint Response Styles}
 
 \item{mid_value}{Mid rate in the likert scale}
 }
@@ -18,5 +18,5 @@ A list containing the updated data
 mrs_function()
 }
 \description{
-Mid point Response Styles
+This function detects the midpoint response styles in responses for the Likert scale questions.
 }

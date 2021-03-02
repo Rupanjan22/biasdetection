@@ -9,7 +9,7 @@ create_plots_ers(ers_data, likert_columns)
 \arguments{
 \item{ers_data}{Resulting data from the ers_function}
 
-\item{likert_columns}{A list containing the column names to use for ERS
+\item{likert_columns}{A list containing the column names to use for Extreme Responding Style
 create_plots_ers()}
 }
 \description{
