@@ -21,3 +21,8 @@ rr_function()
 Given a .csv file with panel data, excludes duplicate entries, applies time filter for random responses
 and writes the result in another .csv file.
 }
+\examples{
+\dontrun{
+rr_function(file.csv, list(2,4,5), 10)
+}
+}

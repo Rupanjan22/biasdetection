@@ -16,3 +16,8 @@ rr_time_filter()}
 \description{
 Calculates the first quartiles of each Time Group to identify the random responses. It displays them as well.
 }
+\examples{
+\dontrun{
+rr_time_filter(dataframe, 4)
+}
+}

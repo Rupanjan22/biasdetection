@@ -37,6 +37,7 @@ for(i in 1:8)
 #
 # total_scenarios_overall <- list(list("S1",..."S8"),list("S9",.."S16"),list(),list(),list(),list(),list(),list())
 
+
 attribute_cc <- "Cheapest_Cost"
 attribute_short_cc <- "CC"
 scenarios_cc <- list(list("S1","S3","S4","S5", "S8"), list("S9","S11","S12","S13","S14"),list("S17","S18","S19","S24"),list("S26","S27","S30","S32"),
@@ -99,3 +100,4 @@ alternatives_nt <- list(list("Alt1", "Alt1","Alt1", "Alt1","Alt1", "Alt1","Alt1"
 
 #attribute_non_attendance_function(csv_file, total_scenarios, num_blocks, scenarios_ib, alternatives_ib, attribute_ib, attribute_short_ib)
 attribute_non_attendance_function(csv_file, total_scenarios, num_blocks, scenarios_nt, alternatives_nt, attribute_nt, attribute_short_nt)
+

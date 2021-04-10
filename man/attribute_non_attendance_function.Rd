@@ -33,3 +33,25 @@ attribute_non_attendance_function()}
 \description{
 Attribute Non Attendance Function (for Inconsistent Bias and Non Trading)
 }
+\examples{
+\dontrun{
+attribute_non_attendance_function(file.csv, list(list("S1", "S2"),
+                                                 list("S3", "S4"),
+                                                 list("S5", "S6"),
+                                                 list("S7", "S8")),
+                                                 4,
+                                                 list(list("S1"),
+                                                      list("S4"),
+                                                      list("S6"),
+                                                      list("S7")),
+                                                      "Cheapest_Cost",
+                                                      "CC")
+attribute_non_attendance_function(file.csv, list(list("S1", "S2", "S3", "S4"),
+                                                 list("S5", "S6", "S7", "S8")),
+                                                 2,
+                                                 list(list("S1", "S3"),
+                                                      list("S7", "S8")),
+                                                      "Fastest_Travel_Time",
+                                                      "FTT")
+}
+}

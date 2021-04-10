@@ -22,3 +22,11 @@ ers_function()
 \description{
 Detects extreme responding style for the Likert questions in the survey.
 }
+\examples{
+\dontrun{
+ers_function(file.csv, list("ParkingCosts.SQ001.",
+                            "CongestionCosts.SQ001.",
+                            "LowIncLikert.SQ001.",
+                            "AffordableTrLikert.SQ001."), 5, 1)
+}
+}

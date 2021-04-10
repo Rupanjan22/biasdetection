@@ -17,3 +17,11 @@ This function creates plots from the resulting data in extreme response style
 (question wise bar plot and respondent wise bar plot (for positive, negative and total),
 kernel density plot for respondent wise).
 }
+\examples{
+\dontrun{
+create_plots_ers(dataframe, list("ParkingCosts.SQ001.",
+                                 "CongestionCosts.SQ001.",
+                                 "LowIncLikert.SQ001.",
+                                 "AffordableTrLikert.SQ001."))
+}
+}

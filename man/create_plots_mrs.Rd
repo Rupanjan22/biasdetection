@@ -16,3 +16,11 @@ create_plot_mrs()}
 This function creates plots from the resulting data in mid point response style
 (question and respondent wise bar plots).
 }
+\examples{
+\dontrun{
+create_plots_mrs(dataframe, list("ParkingCosts.SQ001.",
+                                 "CongestionCosts.SQ001.",
+                                 "LowIncLikert.SQ001.",
+                                 "AffordableTrLikert.SQ001."))
+}
+}

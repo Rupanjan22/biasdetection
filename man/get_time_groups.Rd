@@ -21,3 +21,8 @@ questions, stated preference questions, socio-demographic questions, among other
 parts of the survey which are grouped into different groups. Respondents completing different parts of the survey in time less than first quartile values of the time spent
 in each group are the ones employing random responding or inattentive responding.
 }
+\examples{
+\dontrun{
+get_time_groups(file.csv)
+}
+}

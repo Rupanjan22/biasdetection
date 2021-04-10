@@ -21,3 +21,8 @@ such as Factorial design, Fractional factorial design are usually grouped into d
 which contains the different stated preference scenarios. This function removes the duplicate entries (different rows for different stated preference scenarios) based on id
 for each respondent and returns the dataframe rr_data containing only one row for each respondent. This rr_data is used in detecting random responding.
 }
+\examples{
+\dontrun{
+remove_duplicates(csv_data)
+}
+}

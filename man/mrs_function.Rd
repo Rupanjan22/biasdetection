@@ -20,3 +20,11 @@ mrs_function()
 \description{
 This function detects the midpoint response styles in responses for the Likert scale questions.
 }
+\examples{
+\dontrun{
+mrs_function(file.csv, list("ParkingCosts.SQ001.",
+                            "CongestionCosts.SQ001.",
+                            "LowIncLikert.SQ001.",
+                            "AffordableTrLikert.SQ001."), 3)
+}
+}

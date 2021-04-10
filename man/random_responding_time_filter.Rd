@@ -7,7 +7,7 @@
 random_responding_time_filter(rr_data, excluded_time_groups, num_time_groups)
 }
 \arguments{
-\item{rr_data}{A list containing unique responses (based on id) from the original panel data}
+\item{rr_data}{A dataframe containing unique responses (based on id) from the original panel data}
 
 \item{excluded_time_groups}{A list containing the indices of excluded time groups. Excluded time groups could be the ones which record time spent by respondents in
 filling up groups like introduction.}
@@ -24,4 +24,9 @@ responses having time group values lower than the first quartiles of the respect
 For each Time Group and for each respondent, the results of the random responses are recorded as binary (where 1 is true and 0 is false ).
 It also creates 2 additional columns (RR_Total and percent_RR_Total) containing the sum of the random responses for each
 Time Group, and the total percentage of random responses for each respondent, respectively.
+}
+\examples{
+\dontrun{
+random_responding_time_filter(dataframe, list(1,4,7), 8)
+}
 }

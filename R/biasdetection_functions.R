@@ -17,6 +17,10 @@
 #' questions, stated preference questions, socio-demographic questions, among others. Limesurvey automatically generates the time spent by each respondent in filling up different
 #' parts of the survey which are grouped into different groups. Respondents completing different parts of the survey in time less than first quartile values of the time spent
 #' in each group are the ones employing random responding or inattentive responding.
+#' @examples
+#' \dontrun{
+#' get_time_groups(file.csv)
+#' }
 #' @param csv_file The .csv file which contains the panel data of all responses and is generated from survey platforms like Limesurvey.
 #' @return Number of time groups based on the different groups of the survey.
 #' get_time_groups()
@@ -40,7 +44,10 @@ get_time_groups <- function(csv_file) {
 #' such as Factorial design, Fractional factorial design are usually grouped into different blocks which are then presented to the respondents. So, each respondent gets to answer each block
 #' which contains the different stated preference scenarios. This function removes the duplicate entries (different rows for different stated preference scenarios) based on id
 #' for each respondent and returns the dataframe rr_data containing only one row for each respondent. This rr_data is used in detecting random responding.
-#'
+#' @examples
+#' \dontrun{
+#' remove_duplicates(csv_data)
+#' }
 #' @param csv_data A list containing panel data of all responses
 #' @return A list containing unique responses (based on id) from the original panel data. The original panel data contains different rows having the different choice scenarios for each respondent.
 #'
@@ -56,6 +63,10 @@ remove_duplicates <- function(csv_data) {
 #' @title Random response time filter
 #'
 #' @description Calculates the first quartiles of each Time Group to identify the random responses. It displays them as well.
+#' @examples
+#' \dontrun{
+#' rr_time_filter(dataframe, 4)
+#' }
 #' @param rr_data The dataframe used in detecting random responding and is generated from the original panel dataframe. It is a list containing unique responses (based on id) of the respondent.
 #' @param num_time_groups Number of time groups is used in detecting random responding. It is generated from the groups of the survey. The dataframe contains different time groups (columns) where
 #' each time group contains the time spent by each respondent in filling up different groups of the survey.
@@ -79,7 +90,11 @@ rr_time_filter <- function(rr_data, num_time_groups) {
 #' For each Time Group and for each respondent, the results of the random responses are recorded as binary (where 1 is true and 0 is false ).
 #' It also creates 2 additional columns (RR_Total and percent_RR_Total) containing the sum of the random responses for each
 #' Time Group, and the total percentage of random responses for each respondent, respectively.
-#' @param rr_data A list containing unique responses (based on id) from the original panel data
+#' @examples
+#' \dontrun{
+#' random_responding_time_filter(dataframe, list(1,4,7), 8)
+#' }
+#' @param rr_data A dataframe containing unique responses (based on id) from the original panel data
 #' @param excluded_time_groups A list containing the indices of excluded time groups. Excluded time groups could be the ones which record time spent by respondents in
 #' filling up groups like introduction.
 #' @param num_time_groups Number of time groups
@@ -126,6 +141,10 @@ random_responding_time_filter <- function(rr_data, excluded_time_groups, num_tim
 #'
 #' @description Given a .csv file with panel data, excludes duplicate entries, applies time filter for random responses
 #' and writes the result in another .csv file.
+#' @examples
+#' \dontrun{
+#' rr_function(file.csv, list(2,4,5), 10)
+#' }
 #' @param csv_file The file we want to process
 #' @param excluded_time_groups A list containing the indices of excluded time groups
 #' @param num_time_groups Number of time groups
@@ -146,8 +165,11 @@ rr_function <- function(csv_file, excluded_time_groups, num_time_groups) {
 #' @description This function creates different kinds of plots such as bar plot, density plot and histogram for the generated dataframe rr_data.
 #' The percentage of random responding is analysed both group wise (groups from the survey) and respondent wise. Plots for group wise analysis include bar plot
 #' while for respondent wise, includes both bar plot and histogram.
-#'
-#' @param rr_data A list containing unique responses (based on id) from the original panel data
+#' @examples
+#' \dontrun{
+#' create_plots_rr(dataframe, list(1,3,5), 12)
+#' }
+#' @param rr_data A dataframe containing unique responses (based on id) from the original panel data
 #' @param excluded_time_groups A list containing the indices of excluded time groups. Excluded time groups could be the time groups which could be neglected for calculating
 #' the percentage of random responding
 #' @param num_time_groups Number of time groups
@@ -213,6 +235,13 @@ create_plots_rr <- function(rr_data, excluded_time_groups, num_time_groups) {
 #' @title Extreme Responding Style
 #'
 #' @description Detects extreme responding style for the Likert questions in the survey.
+#' @examples
+#' \dontrun{
+#' ers_function(file.csv, list("ParkingCosts.SQ001.",
+#'                             "CongestionCosts.SQ001.",
+#'                             "LowIncLikert.SQ001.",
+#'                             "AffordableTrLikert.SQ001."), 5, 1)
+#' }
 #' @param csv_file The file we want to process
 #' @param likert_columns A list containing the column names (likert questions) to use for Extreme Responding Style
 #' @param max_value Maximum rate in the likert scale
@@ -281,6 +310,13 @@ ers_function <- function(csv_file, likert_columns, max_value, min_value) {
 #' @description This function creates plots from the resulting data in extreme response style
 #' (question wise bar plot and respondent wise bar plot (for positive, negative and total),
 #' kernel density plot for respondent wise).
+#' @examples
+#' \dontrun{
+#' create_plots_ers(dataframe, list("ParkingCosts.SQ001.",
+#'                                  "CongestionCosts.SQ001.",
+#'                                  "LowIncLikert.SQ001.",
+#'                                  "AffordableTrLikert.SQ001."))
+#' }
 #' @param ers_data Resulting data from the ers_function
 #' @param likert_columns A list containing the column names to use for Extreme Responding Style
 #' create_plots_ers()
@@ -400,6 +436,13 @@ create_plots_ers <- function(ers_data, likert_columns) {
 #' @title Mid point Response Styles
 #'
 #' @description This function detects the midpoint response styles in responses for the Likert scale questions.
+#' @examples
+#' \dontrun{
+#' mrs_function(file.csv, list("ParkingCosts.SQ001.",
+#'                             "CongestionCosts.SQ001.",
+#'                             "LowIncLikert.SQ001.",
+#'                             "AffordableTrLikert.SQ001."), 3)
+#' }
 #' @param csv_file The file we want to process
 #' @param likert_columns A list containing the column names to use for Midpoint Response Styles
 #' @param mid_value Mid rate in the likert scale
@@ -445,6 +488,13 @@ mrs_function <- function(csv_file, likert_columns, mid_value) {
 #'
 #' @description This function creates plots from the resulting data in mid point response style
 #' (question and respondent wise bar plots).
+#' @examples
+#' \dontrun{
+#' create_plots_mrs(dataframe, list("ParkingCosts.SQ001.",
+#'                                  "CongestionCosts.SQ001.",
+#'                                  "LowIncLikert.SQ001.",
+#'                                  "AffordableTrLikert.SQ001."))
+#' }
 #' @param mrs_data Resulting data from the mrs_function
 #' @param likert_columns A list containing the column names to use for MRS
 #' create_plot_mrs()
@@ -501,6 +551,27 @@ create_plots_mrs <- function(mrs_data, likert_columns) {
 #'
 #' @description This function detects the responses employing lexicographic response styles, where the respondents choose the option for stated preference
 #' scenarios based on the best attribute level.
+#' @examples
+#' \dontrun{
+#' lrs_general_function(file.csv, list(list("S1", "S2"),
+#'                                     list("S3", "S4"),
+#'                                     list("S5", "S6"),
+#'                                     list("S7", "S8")),
+#'                                     4,
+#'                                     list(list("S1"),
+#'                                          list("S4"),
+#'                                          list("S6"),
+#'                                          list("S7")),
+#'                                          "Cheapest_Cost",
+#'                                          "CC")
+#' lrs_general_function(file.csv, list(list("S1", "S2", "S3", "S4"),
+#'                                     list("S5", "S6", "S7", "S8")),
+#'                                     2,
+#'                                     list(list("S1", "S3"),
+#'                                          list("S7", "S8")),
+#'                                          "Fastest_Travel_Time",
+#'                                          "FTT")
+#' }
 #' @param csv_file The file we want to process
 #' @param total_scenarios A list containing all the Stated Preference scenarios
 #' @param num_blocks The amount of blocks on which the scenarios will be distributed
@@ -597,6 +668,27 @@ lrs_general_function <- function(csv_file, total_scenarios, num_blocks, scenario
 #' @title Attribute Non Attendance Function (for Inconsistent Bias and Non Trading)
 #'
 #' @description
+#' @examples
+#' \dontrun{
+#' attribute_non_attendance_function(file.csv, list(list("S1", "S2"),
+#'                                                  list("S3", "S4"),
+#'                                                  list("S5", "S6"),
+#'                                                  list("S7", "S8")),
+#'                                                  4,
+#'                                                  list(list("S1"),
+#'                                                       list("S4"),
+#'                                                       list("S6"),
+#'                                                       list("S7")),
+#'                                                       "Cheapest_Cost",
+#'                                                       "CC")
+#' attribute_non_attendance_function(file.csv, list(list("S1", "S2", "S3", "S4"),
+#'                                                  list("S5", "S6", "S7", "S8")),
+#'                                                  2,
+#'                                                  list(list("S1", "S3"),
+#'                                                       list("S7", "S8")),
+#'                                                       "Fastest_Travel_Time",
+#'                                                       "FTT")
+#' }
 #' @param csv_file The file we want to process
 #' @param total_scenarios A list containing all the SP scenarios
 #' @param num_blocks The amount of blocks on which the scenarios will be distributed
@@ -652,4 +744,5 @@ attribute_non_attendance_function <- function(csv_file, total_scenarios, num_blo
     write.csv(ana_data, file_name)
   }
 }
+
 
