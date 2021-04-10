@@ -7,3 +7,5 @@ matrix:
   include:
     - dist: xenial
     - os: osx
+      osx_image: 10.1
+      disable_homebrew: true
