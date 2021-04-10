@@ -2,7 +2,7 @@ library(dplyr)
 library(stringr)
 library(rlist)
 
-csv_file <- "C:/Users/HP/Desktop/Study Project/SurveyResponses.csv"
+csv_file <- "./SurveyResponses.csv"
 excluded_time_groups <- list(1) # excluding time_group1, as it included only introduction and description of the survey which people might overlook
 num_time_groups <- get_time_groups(csv_file)
 
